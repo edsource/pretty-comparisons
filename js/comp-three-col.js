@@ -4,7 +4,7 @@
 	var tabletopTest = false;
 	var compareControl = [];
 	var compareData = [[],[],[],[]];
-	var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0AnZDmytGK63SdERYd3huT3pXT3NiempOeGZpWlA1YXc&output=html";
+	var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0AnZDmytGK63SdGduSjNfbzlUOF9TTnRxeW9vNDF3SEE&output=html";
 
 
 // ------- TABLETOP ------- //
