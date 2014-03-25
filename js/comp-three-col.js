@@ -57,6 +57,8 @@
 			insertRow[2] = tab4.right;
 			compareData[3].push(insertRow)
 		});
+		
+		//begin process of populating tabs, detecting number of tabs, etc.
 		verifyData();
 	}
 
@@ -65,26 +67,52 @@
 
 	function verifyData(){
 		var x = 0;
+		
+		//reads what tabs are activated in spreadsheet
 		for (i = 1 ; i < 5 ; i++){
 			var e = i - 1;
-			if (compareControl[0][i] === "no"){
+			console.log(compareControl[0][i])
+			if (compareControl[0][i] === "no" || compareControl[0][i] === "No" || compareControl[0][i] === undefined || compareControl[0][i] === null){
 				$("#compare-content-" + e).remove();
+				$(".compare-nav-tab[data='" + e + "']").remove();
 			}
 			else {
 				x = x + 1; 
 			}	
 		}
+
+		//set margins for nav buttons
+		switch(x){
+			case 1:
+				$(".compare-nav-tab").remove();
+				break;
+			case 2:
+				$(".compare-nav-tab").css("margin","0 90px");
+				break;
+			case 3:
+				$(".compare-nav-tab").css("margin","0 38px");
+				break;
+			case 4:
+				$(".compare-nav-tab").css("margin","0 12px");
+				break;
+		}
 		populateData(x);
 	}
 
 	function populateData(numTabs){
+		//determine max tabs
+		maxTabs = numTabs;
+		
 		//populate tabs with spreadsheet information
 		for (i = 0 ; i < numTabs ; i++){
 			var e = i + 1;
-			maxTabs = maxTabs + 1;
+			
+			//populate headers for columns in each tab
 			$("#compare-content-" + i + " h4:eq(0)").html(compareControl[1][e]);
 			$("#compare-content-" + i + " h4:eq(1)").html(compareControl[2][e]);
 			$("#compare-content-" + i + " h4:eq(2)").html(compareControl[3][e]);
+			
+			//populate content for each tab
 			seedTable(i)		
 		}
 
