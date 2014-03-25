@@ -27,6 +27,7 @@ By default, the app is 600px in width, with the width of the table columns insid
 
 <h4>Setup</h4>
 <ul>
+	<li>Install all files on your server;</li>
 	<li>Copy one of the following Google Spreadsheet templates depending on your need:
 		<ul>
 			<li><a href="https://docs.google.com/spreadsheet/ccc?key=0AnZDmytGK63SdEV6WmJ4T1lBQTNycnM2MVEwMGoyMnc#gid=0">A two-column comparison</a></li>
