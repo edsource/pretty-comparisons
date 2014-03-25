@@ -1,0 +1,370 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://www.edsource.org/today/wp-content/js/tabletop.js"></script>
+<style>
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+	#compare-container {
+		width:620px;
+		height:auto;
+		border:2px solid #4c5b52;
+		background:#F8F7F1;
+		overflow:auto;
+	}	
+
+
+
+		#compare-container p , #compare-container span, #compare-container a, #compare-container li {
+			font-size:14px;
+			line-height:16px;
+			font-weight:300;
+			margin:10px 10px;
+		}
+
+
+	#compare-header {
+		height:auto;
+		overflow:auto;
+		margin:0 0 -14px 0;
+	}
+
+		#compare-header h1 {
+			font-size:32px;
+			line-height:48px;
+			font-weight:700;
+			margin:5px 0;
+			text-align:center;
+			font-family:arial, san-serif;
+		}
+
+		#compare-header p {
+			font-family:"helvetica neue",helvetica,san-serif;
+		}
+
+		#compare-header p:first-of-type {
+			margin:0 0 20px 0;
+			text-align:center;
+			color:#8c9b93;
+			font-size:18px;
+		}
+
+		#compare-header p:nth-of-type(2) {
+			margin:10px 10px;
+		}
+
+		#compare-header p:last-of-type {
+			font-size:12px;
+			font-style:italic;
+			margin:10px 10px 30px 10px;
+		}
+
+	#compare-nav {
+		height:27px;
+		border-bottom:2px solid #4c5b52;
+		background:#333333;
+		border-top:2px solid #4c5b52;
+
+	}
+
+		.compare-nav-tab {
+		   border-top: 1px solid #b9d18e;
+		   background: #53780f;
+		   background: -webkit-gradient(linear, left top, left bottom, from(#78a22f), to(#53780f));
+		   background: -webkit-linear-gradient(top, #78a22f, #53780f);
+		   background: -moz-linear-gradient(top, #78a22f, #53780f);
+		   background: -ms-linear-gradient(top, #78a22f, #53780f);
+		   background: -o-linear-gradient(top, #78a22f, #53780f);
+		   padding: 7.5px 15px;
+		   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+		   color: white;
+		   font-size: 11px;
+		   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+		   text-decoration: none;
+		   vertical-align: middle;
+		   cursor:pointer;
+		   width:100px;
+		   float:left;
+		   margin:0 12px;
+		   text-align:center;
+		   }
+		.compare-nav-tab:hover {
+		   border-top-color: #4c631a;
+		   background: #4c631a;
+		   }
+		.compare-nav-tab:active {
+		   border-top-color: #4c631a;
+		   background: #4c631a;
+		   }
+
+	.compare-content {display:none;position:relative;left:0;}
+	#compare-content-0 {display:block;}	
+
+		#compare-content-header {
+			text-align:center;
+			font-weight:700;
+			border-bottom:1px solid #8c9b93;
+			font-size:.9em;
+			min-height:34px;
+			font-family:arial, san-serif;
+		}
+
+		.compare-content table {
+			width:620px;
+			table-layout:fixed;
+		}
+
+		.compare-content-row {
+			border-bottom:1px dashed #8c9b93;
+		}
+		.compare-content-row:last-of-type {
+			border:0;
+		}
+
+			.compare-content-row td {
+				text-align:justify;
+				font-size:13px !important;
+				line-height:16px !important;
+				font-weight:300;
+				background:#fffff8;
+				border-right:1px solid #8c9b93;
+				font-family:"helvetica neue",helvetica,san-serif;
+			}
+
+			.compare-content-row td:first-of-type {
+				background:#f8f1f6;
+			}
+
+			.compare-content-row td:last-of-type {
+				background:#f1f6f8;
+				border:0;
+			}
+
+		.compare-content-left {
+			padding:10px 0;
+			float:left;
+			width:290px;
+			margin:0 0 0 5px;
+			text-align:center;
+		}
+
+
+		.compare-content-right {
+			float:left;
+			width:290px;
+			padding:10px 0;
+			margin:0 0 0 15px;
+			text-align:center;
+		}
+
+		
+</style>
+<script>
+// ------- GLOBALS ------- //
+	var curTab = 0;
+	var maxTabs = 0;
+	var tabletopTest = false;
+	var compareControl = [];	
+	var compareData = [[],[],[],[]];
+	var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0AnZDmytGK63SdEV6WmJ4T1lBQTNycnM2MVEwMGoyMnc&output=html";
+	
+
+// ------- TABLETOP ------- //
+
+	$(document).ready(function(){
+			Tabletop.init( { key: public_spreadsheet_url,
+		                     callback: showInfo,
+		                     wanted: ["control","tab1","tab2","tab3","tab4"],
+		                     debug: true } );
+	});
+
+	function showInfo(data, tabletop) {		
+		//verify Tabletop
+		tabletopTest = true;
+		
+		$.each( tabletop.sheets("control").all(), function(i, control) {
+			var insertRow = [];
+			insertRow[0] = control.meta;
+			insertRow[1] = control.tab1;
+			insertRow[2] = control.tab2;
+			insertRow[3] = control.tab3;
+			insertRow[4] = control.tab4;
+			compareControl.push(insertRow);
+		});
+		
+		$.each(tabletop.sheets("tab1").all(), function(i, tab1){
+			var insertRow = [[]];
+			insertRow[0] = tab1.left;
+			insertRow[1] = tab1.right;
+			compareData[0].push(insertRow)
+		});
+		
+		$.each(tabletop.sheets("tab2").all(), function(i, tab2){
+			var insertRow = [[]];
+			insertRow[0] = tab2.left;
+			insertRow[1] = tab2.right;
+			compareData[1].push(insertRow)
+		});
+		
+		$.each(tabletop.sheets("tab3").all(), function(i, tab3){
+			var insertRow = [[]];
+			insertRow[0] = tab3.left;
+			insertRow[1] = tab3.right;
+			compareData[2].push(insertRow)
+		});
+		
+		$.each(tabletop.sheets("tab4").all(), function(i, tab4){
+			var insertRow = [[]];
+			insertRow[0] = tab4.left;
+			insertRow[1] = tab4.right;
+			compareData[3].push(insertRow)
+		});
+		
+		verifyData();
+	}
+	
+	
+	
+	
+	function verifyData(){
+		var x = 0;
+		for (i = 1 ; i < 5 ; i++){
+			var e = i - 1;
+			if (compareControl[0][i] === "no"){
+				$("#compare-content-" + e).remove();
+			}
+			else {
+				x = x + 1; 
+			}	
+		}
+		populateData(x);
+	}
+	
+	function populateData(numTabs){
+		//populate tabs with spreadsheet information
+		for (i = 0 ; i < numTabs ; i++){
+			var e = i + 1;
+			maxTabs = maxTabs + 1;
+			$("#compare-content-" + i + " h4:eq(0)").html(compareControl[1][e]);
+			$("#compare-content-" + i + " h4:eq(1)").html(compareControl[2][e]);
+			$("#compare-nav div:eq(" + i + ")").html(compareControl[3][e]);
+			seedTable(i)		
+		}
+		
+		//size columns
+		$(".compare-content-left").attr("style","width:" + compareControl[8][1] +"px");
+		$(".compare-content-right").attr("style","width:" + compareControl[9][1] +"px");
+		$(".compare-content-row td:eq(0)").css("width",compareControl[8][1] +"px");
+		$(".compare-content-row td:eq(1)").css("width",compareControl[9][1] +"px");
+		
+		//graphic information
+		$("#compare-header h1").html(compareControl[4][1]);
+		$("title").html(compareControl[4][1]);
+		$("#compare-header p:eq(0)").html(compareControl[7][1]);
+		$("#compare-header p:eq(1)").html(compareControl[5][1]);
+		$("meta[name='description']").attr("content", compareControl[5][1]);
+		$("#compare-header p:eq(2)").html("Source: " + compareControl[6][1]);
+	
+	}
+	
+	function seedTable(tab){
+		for (x = 0 ; x < compareData[tab].length ; x++){
+			$("#compare-content-" + i + " tbody").append("<tr class=\"compare-content-row\"><td><p>" + compareData[tab][x][0] + "</p></td><td><p>" + compareData[tab][x][1] + "</p></td></tr>");
+		}
+	}
+
+
+// ------- NAVIGATION ------- //
+
+	$(document).ready(function(){
+		$(".compare-nav-tab").on({
+			click:function(){
+				var i = $(this).attr("data");
+				$(".compare-nav-tab").removeAttr("style");
+				$(this).css("background","#4c631a").css("border-top-color","#4c631a");
+				$("#compare-content-" + curTab).css("display","none");		
+				$("#compare-content-" + i).css("display","block");
+				curTab = i;	
+			}
+		});
+	});
+	
+// ------- ONLOAD ------- //	
+	window.onload = function(){
+		$("#compare-content-0").css("display","block");
+		$(".compare-nav-tab:eq(0)").css("background","#4c631a").css("border-top-color","#4c631a");
+	}
+</script>
+
+<div id="compare-container">
+	<section id="compare-header">
+		<h1>LOADING...</h1>
+		<p>This should only take a moment.</p>
+		<p></p>
+		<p></p>
+	</section>
+	<section id="compare-nav">
+		<div class="compare-nav-tab" data="0"></div>
+		<div class="compare-nav-tab" data="1"></div>
+		<div class="compare-nav-tab" data="2"></div>
+		<div class="compare-nav-tab" data="3"></div>
+	</section>
+	<section class="compare-content" id="compare-content-0">
+		<div id="compare-content-header">
+			<div class="compare-content-left">
+				<h4></h4>
+			</div>
+			<div class="compare-content-right">
+				<h4></h4>
+			</div>
+		</div>
+		<table>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
+	<section class="compare-content" id="compare-content-1">
+		<div id="compare-content-header">
+			<div class="compare-content-left">
+				<h4></h4>
+			</div>
+			<div class="compare-content-right">
+				<h4></h4>
+			</div>
+		</div>
+		<table>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
+	<section class="compare-content" id="compare-content-2">
+		<div id="compare-content-header">
+			<div class="compare-content-left">
+				<h4></h4>
+			</div>
+			<div class="compare-content-right">
+				<h4></h4>
+			</div>
+		</div>
+		<table>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
+	<section class="compare-content" id="compare-content-3">
+		<div id="compare-content-header">
+			<div class="compare-content-left">
+				<h4></h4>
+			</div>
+			<div class="compare-content-right">
+				<h4></h4>
+			</div>
+		</div>
+		<table>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
+	
+</div>

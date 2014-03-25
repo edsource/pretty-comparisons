@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 			Tabletop.init( { key: public_spreadsheet_url,
 		                     callback: showInfo,
-		                     wanted: ["control","tab1"],
+		                     wanted: ["control","tab1","tab2","tab3","tab4"],
 		                     debug: true } );
 	});
 
@@ -34,6 +34,29 @@
 			compareData[0].push(insertRow)
 		});
 		
+		$.each(tabletop.sheets("tab2").all(), function(i, tab2){
+			var insertRow = [[]];
+			insertRow[0] = tab2.left;
+			insertRow[1] = tab2.center;
+			insertRow[2] = tab2.right;
+			compareData[1].push(insertRow)
+		});
+		
+		$.each(tabletop.sheets("tab3").all(), function(i, tab3){
+			var insertRow = [[]];
+			insertRow[0] = tab3.left;
+			insertRow[1] = tab3.center;
+			insertRow[2] = tab3.right;
+			compareData[2].push(insertRow)
+		});
+		
+		$.each(tabletop.sheets("tab4").all(), function(i, tab4){
+			var insertRow = [[]];
+			insertRow[0] = tab4.left;
+			insertRow[1] = tab4.center;
+			insertRow[2] = tab4.right;
+			compareData[3].push(insertRow)
+		});
 		verifyData();
 	}
 
@@ -71,7 +94,7 @@
 		$(".compare-content-right").attr("style","width:" + compareControl[11][1] +"px");
 		$(".compare-content-row td").css("width",compareControl[10][1] +"px");
 		$(".compare-content-row td:eq(0)").css("width",compareControl[9][1] +"px");
-		$(".compare-content-row td:eq(" + maxTabs + ")").css("width",compareControl[11][1] +"px");
+		$(".compare-content-row td:eq(2)").css("width",compareControl[11][1] +"px");
 
 		//graphic information
 		$("#compare-header h1").html(compareControl[5][1]);

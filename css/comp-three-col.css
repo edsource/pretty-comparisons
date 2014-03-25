@@ -102,7 +102,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 		text-align:center;
 		font-weight:700;
 		border-bottom:1px solid #8c9b93;
-		height:34px;
+		font-size:.9em;
+		min-height:34px;
 		font-family:arial, san-serif;
 	}
 
