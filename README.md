@@ -33,7 +33,28 @@ By default, the app is 600px in width, with the width of the table columns insid
 			<li><a href="https://docs.google.com/spreadsheet/ccc?key=0AnZDmytGK63SdEV6WmJ4T1lBQTNycnM2MVEwMGoyMnc#gid=0">A two-column comparison</a></li>
 			<li><a href="https://docs.google.com/spreadsheet/ccc?key=0AnZDmytGK63SdGduSjNfbzlUOF9TTnRxeW9vNDF3SEE&usp=drive_web#gid=0">A three-column comparison</a></li>
 		</ul></li>
-	<li></li>
+	<li>Publish the copied sheet, grab the URL for the published sheet and replace the URL located in the javascript file for the column template you are using that is stored in the variable "public_spreadsheet_url";</li>
+	<li>Make a copy of the HTML file for the column template you are using and name it something unique to your project;</li>
+	<li>Upload the new HTML file in the same directory on your server as the other template HTML files;</li>
+	<li>Customize your project's spreadsheet appropriately with any info you want to include, like the title, source, description and contents of each tab that is in use;</li>
+	<li>Create an <a href="http://www.w3schools.com/tags/tag_iframe.asp">iFrame</a> of your project's HTML file and place it on the web page where you want the project to be shown;</li>
+	<li>That's it!</li>
+</ul>
+
+<h4>Spreadsheet Labels Under "Meta" Column</h4>
+<ul>
+	<li><strong>active</strong>: toggles which tabs to use for the project. USE "No" in the cell if you want to disable the tab. You must have at least tab1 active. If you intend to have different tables of information that a user can scroll through, you'll want more than one tab. Example: you want to compare laws proposed by the House of Representatives and the Senate. One tab would be for the House laws, another tab for Senate laws.</li>
+	<li><strong>leftHead</strong>: Headline for the Left Column.</li>
+	<li><strong>centerHead</strong>: Headline for the Center Column in a three-column template.</li>
+	<li><strong>rightHead</strong>: Headline for the Right Column.</li>
+	<li><strong>tabName</strong>: Name of tab as displayed on the app's navigation bar.</li>
+	<li><strong>title</strong>: Title of the app.</li>
+	<li><strong>desc</strong>: Description about the content in the app. This could be a summary, for example.</li>
+	<li><strong>source</strong>: Always source your information! Can insert HTML for links (eg. <a href="URL">TEXT</a>)</li>
+	<li><strong>author</strong>: Author of the content in the app.</li>
+	<li><strong>leftWidth</strong>: Width of left column. Total width of all columns no more than 580px by default.</li>
+	<li><strong>centerWidth</strong>: Width of center column in three column template. Total width of all columns no more than 580px by default.</li>
+	<li><strong>rightWidth</strong>: Width of right column. Total width of all columns no more than 580px by default.</li>
 </ul>
 
 <h4>Notes</h4>
