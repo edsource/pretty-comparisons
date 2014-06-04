@@ -61,6 +61,5 @@ By default, the app is 600px in width, with the width of the table columns insid
 <h4>Notes</h4>
 
 <ul>
-	<li>Do NOT use Google's new spreadsheets at this time. As of March 25, 2013, there is no API support for the new GSheets, meaning it WILL break Tabletop.js.</li>
 	<li>There is a known bug with Tabletop.js where if a user is timed out of their Google account, it will break Tabletop. One way to avert this is by installing and using <a href="https://github.com/jsoma/flatware">Flatware</a>.</li>
 </ul>
