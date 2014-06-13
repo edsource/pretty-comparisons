@@ -8,15 +8,19 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	overflow:auto;
 }	
 
+	#compare-container h1, #compare-container h2, #compare-container h3, #compare-container h4, #compare-container p, #compare-container span, #compare-container a, #compare-container li {
+		font-family:"helvetica neue", helvetica, arial, san-serif;
+	}
 	
-
 	#compare-container p , #compare-container span, #compare-container a, #compare-container li {
-		font-size:14px;
-		line-height:16px;
+		font-size:.875em;
+		line-height:1.5em;
 		font-weight:300;
 		margin:10px 10px;
 	}
-
+	
+	#compare-container p {text-align:left;}
+	
 
 #compare-header {
 	height:auto;
@@ -25,31 +29,19 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 
 	#compare-header h1 {
-		font-size:32px;
-		line-height:48px;
-		font-weight:700;
-		margin:5px 0;
+		font-size:1.5em;
+		font-weight:400;
+		margin:10px 0;
 		text-align:center;
-		font-family:arial, san-serif;
 	}
-
-	#compare-header p {
-		font-family:"helvetica neue",helvetica,san-serif;
-	}
-
+	
 	#compare-header p:first-of-type {
-		margin:0 0 20px 0;
+		margin: 10px 10px 30px 10px;
 		text-align:center;
-		color:#8c9b93;
-		font-size:18px;
 	}
-
-	#compare-header p:nth-of-type(2) {
-		margin:10px 10px;
-	}
-
+	
 	#compare-header p:last-of-type {
-		font-size:12px;
+		font-size:.750em;
 		font-style:italic;
 		margin:10px 10px 30px 10px;
 	}
@@ -59,7 +51,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	border-bottom:2px solid #4c5b52;
 	background:#333333;
 	border-top:2px solid #4c5b52;
-
+	
 }
 
 	.compare-nav-tab {
@@ -76,7 +68,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	   box-shadow: rgba(0,0,0,1) 0 1px 0;
 	   text-shadow: rgba(0,0,0,.4) 0 1px 0;
 	   color: white;
-	   font-size: 11px;
+	   font-size: .688em;
 	   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	   text-decoration: none;
 	   vertical-align: middle;
@@ -95,18 +87,16 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	   background: #4c631a;
 	   }
 
-.compare-content {display:none;position:relative;left:0;}
-#compare-content-0 {display:block;}	
+.compare-content {display:none;position:relative;left:0;}	
+#compare-content-0 {display:block;}
 
 	#compare-content-header {
 		text-align:center;
 		font-weight:700;
 		border-bottom:1px solid #8c9b93;
-		font-size:.9em;
-		min-height:34px;
-		font-family:arial, san-serif;
+		height:34px;
 	}
-
+	
 	.compare-content table {
 		width:620px;
 		table-layout:fixed;
@@ -118,47 +108,48 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	.compare-content-row:last-of-type {
 		border:0;
 	}
-
+	
 		.compare-content-row td {
 			text-align:justify;
 			font-size:13px !important;
 			line-height:16px !important;
 			font-weight:300;
+			width:200px;
 			background:#fffff8;
 			border-right:1px solid #8c9b93;
-			font-family:"helvetica neue",helvetica,san-serif;
 		}
-
+		
 		.compare-content-row td:first-of-type {
+			width:80px;
 			background:#f8f1f6;
 		}
-
+		
 		.compare-content-row td:last-of-type {
 			background:#f1f6f8;
+			width:300px;
 			border:0;
 		}
-
+		
 	.compare-content-left {
 		padding:10px 0;
 		float:left;
 		width:80px;
 		margin:0 0 0 5px;
-		text-align:center;
+		text-align:left;
 	}
-
+	
 	.compare-content-center {
 		float:left;
 		width:200px;
 		padding:10px 0;
 		margin:0 0 0 5px;
-		text-align:center;
+		text-align:left;
 	}
-
+	
 	.compare-content-right {
 		float:left;
 		width:300px;
 		padding:10px 0;
 		margin:0 0 0 15px;
-		text-align:center;
+		text-align:left;
 	}
-
