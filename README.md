@@ -1,6 +1,8 @@
 Simple Comparisons
 ==================
-<strong>UPDATED March 25, 2013</strong>
+<strong>UPDATED Feb 2, 2015</strong>
+
+NOTE: Reworking this app from original. Haven't updated README. 
 
 This repo contains templates for making simple app that compares two or three columns of data side-by-side. The data for the app is input in a Google Spreadsheet using one of the templates provided. That information is then translated into the app. This a great tool for non-coders who want to make a simple comparison app. 
 
